@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - DiscussionForum</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body style="background: black; color:white;background-image: url('https://th.bing.com/th/id/R.71693687a237e4e5fa66f956dfeb9f32?rik=vykYkcx1vcJRIw&riu=http%3a%2f%2fwww.telenor.com.mm%2fsites%2fdefault%2ffiles%2fsq-global-ip.jpg&ehk=0KOka%2fPHLlJ2sY2LcokImoreIPVnMb6PxAF0o97o5Gw%3d&risl=&pid=ImgRaw&r=0'); background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: 100% 100% ">
+    
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer bg-dark text-muted">
+        <div class="container" style="display:flex; justify-content:flex-start;">
+            <div>&copy; 2021 - DiscussionForum - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></div>
+            &nbsp;&nbsp;&nbsp;&nbsp; <div><a asp-area="" asp-controller="Home" asp-action="Privacy">Contact Us</a></div>
+            &nbsp;&nbsp;&nbsp;&nbsp;  <div><a asp-area="" asp-controller="Home" asp-action="Privacy">About Us</a></div>
+            &nbsp;&nbsp;&nbsp;&nbsp;<div><a asp-area="" asp-controller="Home" asp-action="Privacy">Terms & Condition</a></div>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

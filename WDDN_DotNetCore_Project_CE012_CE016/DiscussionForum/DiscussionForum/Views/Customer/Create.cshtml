@@ -1,0 +1,87 @@
+﻿@model DiscussionForum.Models.Questions
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/lib/bootstrap/css/bootstrap.min.css" />
+<link href="~/css/Main.css" rel="stylesheet" />
+<hr />
+<div class="row">
+    <div style="width:100%">
+        <form asp-controller="Customer" enctype="multipart/form-data" asp-action="Create">
+            <div class="container h-100">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col-xl-9">
+
+                        <div class="card" style="border-radius: 15px; background-color:rgba(0,0,0,0.6); color:white; border:1px solid; ">
+                            <div class="card-body">
+                                <h1 style="text-align:center">Create Question</h1>
+                                <div class="row align-items-center pt-4 pb-3">
+                                    <div class="col-md-3 ps-5">
+
+                                        <h6 class="mb-0" style="font-size:20px">Title</h6>
+
+                                    </div>
+                                    <div class="col-md-9 pe-5">
+                                        <input asp-for="QTitle" placeholder="Question Title" class="form-control" />
+                                    </div>
+                                </div>
+
+                                <hr class="mx-n3" />
+
+                                <div class="row align-items-center py-3">
+                                    <div class="col-md-3 ps-5">
+
+                                        <h6 class="mb-0" style="font-size:20px">Description</h6>
+
+                                    </div>
+                                    <div class="col-md-9 pe-5">
+                                        <textarea asp-for="QDescr" class="form-control" placeholder="Question Description"></textarea>
+
+                                    </div>
+                                </div>
+
+
+                                <hr class="mx-n3" />
+
+                                <div class="row align-items-center py-2">
+                                    <div class="col-md-3 ps-5">
+
+                                        <h6 class="mb-0" style="font-size:20px">Image</h6>
+
+                                    </div>
+                                    <div class="col-md-9 pe-5 custom-file">
+                                        <input asp-for="ImageFile" class="form-control form-control-lg" style="padding:10px;height:57px" />
+                                        <div class="small text-muted mt-2">Upload image related to your query.</div>
+                                    </div>
+                                </div>
+
+                                <hr class="mx-n3" />
+
+                            </div>
+                            <div style="text-align:center;margin-bottom:10px">
+                                <button ID="Create" class="btn btn-primary">Raise Question</button>
+                            </div>
+                            <div style="text-align:center;margin-bottom:10px">
+                                <a asp-controller="Customer" asp-action="Index" id="cancel" style="color:lightsteelblue">Cancel</a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

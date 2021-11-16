@@ -1,0 +1,59 @@
+﻿@model DiscussionForum.Models.RegistrationData
+
+@{
+    ViewData["Title"] = "SignUp";
+}
+
+<form asp-controller="Home" asp-action="SignUp" enctype="multipart/form-data" method="post">
+    <div class="signup-form">
+        <div style="text-align:center;color:white"><h1>Registration</h1></div>
+        <div class="container">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" style="color:white" class="control-label"></label>
+                <input asp-for="Name" style="background: black;color:white" class="form-control" placeholder="Enter Your Name..." />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Handle" style="color:white" class="control-label"></label>
+                <input asp-for="Handle" style="background: black;color:white" placeholder="Enter Your Handle..." class="form-control" />
+                <span asp-validation-for="Handle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" style="color:white" class="control-label"></label>
+                <input type="email" asp-for="Email" style="background: black;color:white" placeholder="Enter Your Email..." class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProfilePicture" style="color:white" class="control-label"></label>
+                <input type="file" asp-for="ProfilePicture" required style="background: black;color:white;padding-bottom:10px;height:52px" class="form-control form-control-lg" />
+                <span asp-validation-for="ProfilePicture" class="text-danger"></span>
+                <small id="profileHelp" class="form-text text-muted">Upload your profile picture.</small>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" style="color:white" class="control-label"></label>
+                <input type="password" asp-for="Password" style="background: black;color:white" placeholder="Enter Your Password..." class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ConfirmPassword" style="color:white" class="control-label"></label>
+                <input type="password" asp-for="ConfirmPassword" style="background: black;color:white" placeholder="Re-Enter Your Password..." class="form-control" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" style="color:white" for="exampleCheck1">I Agree Terms And Codition</label>
+            </div>
+            <br />
+            <button type="submit" class="btn btn-primary signup-btn">Register</button>
+            <div><a class="link" asp-area="" asp-controller="Home" asp-action="Login">Already Have Account?</a></div>
+        </div>
+    </div>
+
+</form>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

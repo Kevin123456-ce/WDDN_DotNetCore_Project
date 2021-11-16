@@ -1,0 +1,65 @@
+﻿@model DiscussionForum.Models.ApplicationUser
+@{
+}
+<form id="form1" runat="server" method="post">
+    <div class="container">
+        <div class="signup-form">
+            <div style="text-align:center;color:white"><h1>Update Profile</h1></div>
+            <div asp-validation-summary="All" style="color:red"></div>
+
+            <div class="container" style="color:white">
+
+                <div class="form-group">
+                    &nbsp;<input Id="Name" asp-for="Name" style="background: black;color:white" class="form-control" required placeholder="Enter Your Name...">
+
+                </div>
+                <div class="form-group">
+                    <label for="Handle" style="color:white" class="control-label">
+                        Handle<label for="Handle" style="color:white" class="control-label">
+                        </label>
+                    </label><br />
+                    <input Id="Handle" asp-for="UserName" style="background: black;color:white" placeholder="Enter Your Handle..." class="form-control" readonly>
+
+                </div>
+                <div class="form-group">
+                    <label for="Email" style="color:white" class="control-label">
+                        Email
+                        <label for="Email" style="color:white" class="control-label">
+                        </label>
+
+                    </label>
+                    <input runat="server" asp-for="Email" Id="Email" style="background: black;color:white" placeholder="Enter Your Email..." class="form-control" readonly>
+
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.  </small>
+                    <div class="form-group">
+                        <label asp-for="ProfilePicture" style="color:white" class="control-label"></label>
+                        <input type="file" asp-for="ProfilePictureFile" required style="background: black;color:white;padding-bottom:10px;height:52px" class="form-control form-control-lg" />
+                        <span asp-validation-for="ProfilePictureFile" class="text-danger"></span>
+                        <small id="profileHelp" class="form-text text-muted">Upload your profile picture.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="Password" style="color:white" class="control-label">Password&nbsp;&nbsp;&nbsp; </label>&nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="Password" Display="None" ErrorMessage="Please Enter Password"></asp:RequiredFieldValidator>
+                        <input Id="Password" name="Password" required TextMode="Password" runat="server" type="password" style="background: black;color:white" placeholder="Enter Your Password..." class="form-control">
+
+                    </div>
+                    <div class="form-group">
+                        <label for="ConfirmPassword" style="color:white" class="control-label">Confirm Password</label>
+                        &nbsp;<input Id="ConfirmPassword" required runat="server" TextMode="Password" type="password" style="background: black;color:white" placeholder="Re-Enter Your Password..." class="form-control">
+
+                    </div>
+
+                    <br />
+                    <button ID="update" runat="server" class="btn btn-primary signup-btn">Update</button>
+
+                </div>
+                <br />
+                <p style="text-align:center;">
+                    <a asp-controller="Customer" asp-action="Index">Cancle</a>
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+
+</form>

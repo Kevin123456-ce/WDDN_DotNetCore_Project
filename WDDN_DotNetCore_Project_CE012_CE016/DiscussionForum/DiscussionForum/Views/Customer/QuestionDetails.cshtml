@@ -1,0 +1,83 @@
+﻿@model DiscussionForum.Models.Questions
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var Owner = ViewBag.Owner as ApplicationUser;
+}
+<style>
+    a:hover {
+        color: black;
+    }
+</style>
+<body>
+    <nav class="navbar fixed-navbar navbar-expand-xl navbar-toggleable-sm navbar-light bg-grey border-bottom box-shadow mb-3" style="width: 100%; z-index: 9999">
+        <div class="container">
+            <img src="https://cdn4.iconfinder.com/data/icons/got-an-idea/128/discussion-512.png" Style="height: 70px; margin-right: 20px;" />
+            <label style="color:white;font-size:25px">Discussion Forum</label>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                <ul class="navbar-nav flex-grow-1">
+                </ul>
+            </div>
+        </div>
+        <div style="align-items: flex-end; margin-top: -10px;">
+            <a style="float: right;text-decoration:none;" asp-controller="Customer" asp-action="Index" class="create-btn" id="home">Home</a>
+        </div>
+        <div style="align-items: flex-end; margin-top: -10px;">
+            <a style="float: right; width: 100px; text-decoration: none;" asp-controller="Customer" asp-action="AboutUs" class="create-btn" id="AboutUs">About Us</a>
+        </div>
+        <div style="align-items: flex-end; margin-top: -10px;">
+            <a style="float: right; width: 115px; text-decoration: none;" asp-controller="Customer" asp-action="ContactUs" class="create-btn" id="ContactUs">Contact Us</a>
+        </div>
+        <div style="align-items: flex-end; margin-top: -10px;">
+            <a style="float: right;" asp-controller="Customer" asp-action="Logout" class="create-btn" id="Logout">Logout</a>
+        </div>
+    </nav>
+    <h1 style="text-align:center;">
+        <label style="color:white" id="Title">@Model.QTitle</label><br />
+    </h1>
+    <hr style="color: white;" />
+    <div style="display: flex; justify-content: center; width: 100%; padding: 5px; border-radius: 5px;">
+        <img id="ErrorImage" src="@Model.ImagePath" style="object-fit: unset; width: 500px; height: auto;" />
+    </div><br />
+    <h4 style="border: 1px solid white;width:100%;padding:10px;">
+        <label id="Description" style="padding:10px;color:white">@Model.QDescr</label>
+    </h4>
+    <label style="float:right;margin-right:10px;color:white" id="Owner">@Owner.UserName</label><br />
+    <button id="AddCommentBtn" class="Btn" style="text-decoration:none;color:gainsboro;border:none;background-color:transparent">Add Comment</button>
+    <hr style="height: 2px; color: white;" />
+    <h2 style="color: white;">Comments</h2>
+    <div id="AddComment" style="margin-left: 50px;width:inherit;margin-right:50px;" >
+        <form method="post" asp-controller="Customer" asp-action="QuestionDetails" asp-route-id="@Model.QId">
+            <textarea name="Comment" id="comment" style="width:100%;background-color:black;color:white;"></textarea>
+            <button id="AddCommentClick" onclick="CommentAdded()" class="Btn" style="text-decoration:none;color:gainsboro;background-color:black;border:0px;">Add Comment</button>
+        </form>
+    </div>
+    <div style="background-color:black;border-radius:10px;">
+        @{
+            var Comments = ViewBag.Comments as List<Comment>;
+            foreach (var cmt in Comments)
+            {
+                <div style="margin-left: 50px;margin-right:50px;">
+                    <hr style="color: white" />
+                    <label runat="server" style="padding-left: 10px; color: white;">@cmt.CommentDescr</label>&nbsp;&nbsp;&nbsp;<span style="color:white">-- By</span> <label style="font-weight:bold;color: white;" ID="Commentor">@cmt.CommentUserDatas.UserName</label>&nbsp;&nbsp;&nbsp;
+                    <label ID="commentedTime" style="color: lightgray;">@cmt.CommentedTime</label>
+                    <hr style="color: white;" />
+                </div>
+            }
+        }
+    </div>
+</body>
+<script>
+    $(document).ready(function () {
+        $("#AddCommentBtn").bind('click', function (e) {
+            document.getElementById("AddComment").hidden = true;
+            e.preventDefault();
+        });
+    })
+    function CommentAdded(e) {
+        document.getElementById("AddComment").hidden = false;
+    }
+</script>
